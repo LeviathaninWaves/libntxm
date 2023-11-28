@@ -34,7 +34,7 @@
 #define _PLAYER_H_
 
 #include "song.h"
-#include "viblut.h"
+#include "vibrato_sine_table.h"
 #include "linear_freq_table.h"
 
 #include <new>

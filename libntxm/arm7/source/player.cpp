@@ -41,7 +41,7 @@ extern "C" {
 #include "ntxm/fifocommand.h"
 #include "ntxm/song.h"
 #include "ntxm/player.h"
-#include "ntxm/viblut.h"
+#include "ntxm/vibrato_sine_table.h"
 
 #define MIN(x,y)	((x)<(y)?(x):(y))
 
@@ -788,7 +788,7 @@ void Player::handleTickEffects(void)
 				{
 					u8 note = state.channel_note[channel];
 					u8 vib_depth = (param & 0x0f);
-					s16 fine = ((s16)(viblut[state.channel_vib_accumulator[channel]] * vib_depth) / 2);
+					s16 fine = ((s16)(vibrato_sine_table[state.channel_vib_accumulator[channel]] * vib_depth) / 2);
 					inst->bendNote(note, note, fine, channel);
 					state.channel_vib_accumulator[channel] += state.channel_vib_phase_increment[channel];
 					break;

@@ -30,11 +30,11 @@
  *
  ***** END LICENSE BLOCK *****/
  
-#ifndef VIBLUT_H
-#define VIBLUT_H
+#ifndef VIBRATO_SINE_TABLE_H
+#define VIBRATO_SINE_TABLE_H
 
 #include <nds.h>
 
-extern const u16 viblut[256];
+extern const u16 vibrato_sine_table[256];
 
 #endif
