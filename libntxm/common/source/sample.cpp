@@ -481,8 +481,7 @@ u8 Sample::getBasePanning(void)
 
 void Sample::updatePanning(u8 channel)
 {
-	//The idea is to update pan, set pan effect doesn't take effect
-	//until next note
+	//The idea is to update panning when it's changed during playback
 	u32 control_reg_val = SCHANNEL_CR(channel) & 0xff80ffff;
 
 	SCHANNEL_CR(channel) = control_reg_val | SOUND_PAN(ntxm_stereo_output ? panning/2 : 64);
