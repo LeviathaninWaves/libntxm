@@ -520,6 +520,8 @@ void Player::playRow(void)
 				state.channel_ms_left[channel] = song->instruments[inst]->calcPlayLength(note);
 			}
 		}
+		if((note==STOP_NOTE)&&(song->instruments[inst]->getVolumeEnvelopeSustainFlag()==true))
+			state.channel_active[channel] = 1; //Sustain instruments need to keep playing for release envelope to work
 		updateChannelVol(volume, channel);
 	}
 }

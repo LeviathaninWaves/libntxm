@@ -303,12 +303,12 @@ u16 Instrument::getPanningEnvelope(u16 **xs, u16 **ys)
 
 bool Instrument::getVolumeEnvelopeSustainFlag(void)
 {
-  return vol_env_sustain;
+	return vol_env_sustain;
 }
 
 u8 Instrument::getVolumeEnvelopeSustainPoint(void)
 {
-  return vol_sustain_point;
+	return vol_sustain_point;
 }
 #endif
 
@@ -317,8 +317,16 @@ void Instrument::updateEnvelopePos(u8 bpm, u8 ms_passed, u8 channel, u8 note)
 	
 	if ((note != STOP_NOTE) && ((vol_env_sustain == true) && (envelope_pixels[channel] >= vol_envelope_x[vol_sustain_point]) && (envelope_pixels[channel] < vol_envelope_x[vol_sustain_point + 1])))
 	{
-	  envelope_pixels[channel] = vol_envelope_x[vol_sustain_point];
-	  return;
+		envelope_pixels[channel] = vol_envelope_x[vol_sustain_point];
+		envelope_ms[channel] = envelope_pixels[channel] / bpm / 50 * 120 * 1000;
+		return;
+	}
+	if ((note == STOP_NOTE) && (vol_env_sustain == true))
+	{
+		//Sustain instruments need release stage on key off
+		//Jump to just after sustain point and update
+		envelope_pixels[channel] = vol_envelope_x[vol_sustain_point+1];
+		envelope_ms[channel] = envelope_pixels[channel] / bpm / 50 * 120 * 1000;
 	}
 	envelope_ms[channel] += ms_passed;
 	envelope_pixels[channel] = envelope_ms[channel] * bpm * 50 / 120 / 1000; // 50 pixels per second at 120 BPM
