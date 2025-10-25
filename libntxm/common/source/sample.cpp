@@ -262,7 +262,7 @@ void Sample::play(u8 note, u8 volume_ , u8 channel)
 		SCHANNEL_ENABLE |
 		loop_bit |
 		sound_format |
-		SOUND_PAN(ntxm_stereo_output ? panning/2 : 64) |
+		SOUND_PAN(ntxm_stereo_output ? panning : 64) |
 		SOUND_VOL(smpvolume);
 }
 
