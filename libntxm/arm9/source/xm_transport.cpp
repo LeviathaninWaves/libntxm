@@ -558,6 +558,8 @@ u16 XMTransport::load(const char *filename, Song **_song)
 				// Panning
 				u8 sample_panning;
 				sample_panning = *(u8*)(sample_headers+40*sample_id + 15);
+				if(sample_panning != 0x01)
+					sample_panning = sample_panning >> 1; //XM to DS channel pan value
 				//my_dprintf("panning: %u\n", sample_panning);
 
 				// Relative note
@@ -1132,6 +1134,12 @@ u16 XMTransport::save(const char *filename, Song *song)
 
 				// Panning
 				u8 smp_panning = sample->getBasePanning();
+				//Convert DS panning back to XM standard
+				if(smp_panning == 0x7F) {
+					smp_panning = 0xFF;
+				} else {
+					smp_panning = smp_panning << 1;
+				}
 				fwrite(&smp_panning, 1, 1, xmfile);
 
 				// Relative note
