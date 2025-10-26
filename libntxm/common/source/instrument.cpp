@@ -303,12 +303,12 @@ u16 Instrument::getPanningEnvelope(u16 **xs, u16 **ys)
 
 bool Instrument::getVolEnvSusEnabled(void)
 {
-  return vol_env_sustain;
+	return vol_env_sustain;
 }
 
 u8 Instrument::getVolumeEnvelopeSustainPoint(void)
 {
-  return vol_sustain_point;
+	return vol_sustain_point;
 }
 #endif
 
