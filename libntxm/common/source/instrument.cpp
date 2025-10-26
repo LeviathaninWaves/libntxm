@@ -323,8 +323,8 @@ void Instrument::updateEnvelopePos(u8 bpm, u8 ms_passed, u8 channel, u8 note)
 	//Sustain instruments play out release stage of envelope on key off
 	if ((note == STOP_NOTE) && (vol_env_sustain == true))
 	{
-		envelope_pixels[channel] = vol_envelope_x[vol_sustain_point];
-		envelope_ms[channel] = envelope_pixels[channel] / bpm / 50 * 120 * 1000;
+		envelope_pixels[channel] = vol_envelope_x[vol_sustain_point+1];
+		//envelope_ms[channel] = envelope_pixels[channel] / bpm / 50 * 120 * 1000;
 		return;
 	}
 	envelope_ms[channel] += ms_passed;
