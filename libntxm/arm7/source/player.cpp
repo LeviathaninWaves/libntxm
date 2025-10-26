@@ -183,7 +183,6 @@ void Player::playNote(u8 note, u8 volume, u8 channel, u8 instidx)
 	// Stop possibly active fades
 	state.channel_fade_active[channel] = 0;
 	state.channel_fade_ms[channel] = 0;
-	state.channel_instrument[channel] = instidx;
 
 	if(volume == NO_VOLUME) {
 		state.channel_volume[channel] = MAX_VOLUME * inst->getSampleForNote(note)->getVolume() / 255;
@@ -505,6 +504,12 @@ void Player::playRow(void)
 		u16 test_delay = (((effect << 8) & 0x0f00) | (param & 0xf0));
 		
 		Instrument *instr;
+
+		if(inst == NO_INSTRUMENT)
+			inst = state.channel_instrument[channel];
+		else
+			state.channel_instrument[channel] = inst;
+
 		effect = (effect >> 4) & 0xf;
 
 		//Skip new note if doing porta to note, we'll slide towards it instead
