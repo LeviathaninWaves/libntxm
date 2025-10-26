@@ -503,6 +503,8 @@ void Player::playRow(void)
 		u8 effect = song->patterns[state.pattern][channel][state.row].effect;
 		u8 param  = song->patterns[state.pattern][channel][state.row].effect_param;
 		u16 test_delay = (((effect << 8) & 0x0f00) | (param & 0xf0));
+		
+		Instrument instr = song->instruments[inst];
 
 		effect = (effect >> 4) & 0xf;
 
@@ -520,7 +522,7 @@ void Player::playRow(void)
 				state.channel_ms_left[channel] = song->instruments[inst]->calcPlayLength(note);
 			}
 		}
-		if((note==STOP_NOTE)&&(inst->getVolumeEnvelopeSustainFlag() == true))
+		if((note==STOP_NOTE)&&(instr->getVolEnvSusEnabled() == true))
 			state.channel_active[channel] = 1; //Sustain instruments need to keep playing for release envelope to work
 		updateChannelVol(volume, channel);
 	}

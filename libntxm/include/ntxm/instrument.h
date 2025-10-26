@@ -86,12 +86,12 @@ class Instrument
 		void setPanningEnvelope(u16 *envelope, u8 n_points, u8 p_sustain_point, bool pan_env_on_, bool pan_env_sustain_, bool pan_env_loop_);
 		
 		void setVolumeEnvelopePoints(u16 *xs, u16 *ys, u16 n_points);
-		void toggleVolumeEnvelopeSustain(bool is_enabled);
+		void setVolEnvSusEnabled(bool is_enabled);
 		void setVolumeEnvelopeSustainPoint(u8 sus_point);
 		
 		u16 getVolumeEnvelope(u16 **xs, u16 **ys);
 		u16 getPanningEnvelope(u16 **xs, u16 **ys);
-		bool getVolumeEnvelopeSustainFlag(void);
+		bool getVolEnvSusEnabled(void);
 		u8 getVolumeEnvelopeSustainPoint(void);
 		
 		void updateEnvelopePos(u8 bpm, u8 ms_passed, u8 channel, u8 note);

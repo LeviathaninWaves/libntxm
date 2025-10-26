@@ -280,7 +280,7 @@ void Instrument::setVolumeEnvelopeSustainPoint(u8 sus_point)
   vol_sustain_point = sus_point;
 }
 
-void Instrument::toggleVolumeEnvelopeSustain(bool is_enabled)
+void Instrument::setVolEnvSusEnabled(bool is_enabled)
 {
   vol_env_sustain = is_enabled;
 }
@@ -301,7 +301,7 @@ u16 Instrument::getPanningEnvelope(u16 **xs, u16 **ys)
 	return n_pan_points;
 }
 
-bool Instrument::getVolumeEnvelopeSustainFlag(void)
+bool Instrument::getVolEnvSusEnabled(void)
 {
   return vol_env_sustain;
 }
